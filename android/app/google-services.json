@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "334556602297",
+    "firebase_url": "https://mood-9277.firebaseio.com",
+    "project_id": "mood-9277",
+    "storage_bucket": "mood-9277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334556602297:android:ca0de477c3ecd27c",
+        "android_client_info": {
+          "package_name": "com.microtears.mood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334556602297-02p0n7o3me288n7v2f3o8c8r409s4tjp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz5wlJ2FtZvIzZNlWf9JVU5FqlNAWQMCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334556602297-02p0n7o3me288n7v2f3o8c8r409s4tjp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

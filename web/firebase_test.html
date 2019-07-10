@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>FireBase Test</title>
+</head>
+
+<body>
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyBYysv633xqpeGTkjoUfcQtBhxkFX0khWE",
+        authDomain: "mood-9277.firebaseapp.com",
+        databaseURL: "https://mood-9277.firebaseio.com",
+        projectId: "mood-9277",
+        storageBucket: "mood-9277.appspot.com",
+        messagingSenderId: "334556602297",
+        appId: "1:334556602297:web:3857daa631d28199"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
+    // db.collection("mood").add({
+    //     title: "One 一个",
+    //     content: "凡事到了回忆的时候，真实得像假的⼀样。",
+    // }).then(function (docRef) {
+    //     console.log("Document written with ID: ", docRef.id);
+    // }).catch(function (error) {
+    //     console.error("Error adding document: ", error);
+    // });
+    db.collection("mood").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+        });
+    });
+</script>
+<script src="./main.js"></script>
+
+</html>
