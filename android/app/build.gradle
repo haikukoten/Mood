@@ -24,15 +24,25 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+def isRunningOnTravis = System.getenv("CI") == "true"
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('local.properties')
+    if (keystorePropertiesFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     compileSdkVersion 28
 
     lintOptions {
         disable 'InvalidPackage'
+
+        checkReleaseBuilds false
+        abortOnError false
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.microtears.mood"
         // minSdkVersion 16
         // multidex最低支持 SDK 21
@@ -42,12 +52,35 @@ android {
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    if (isRunningOnTravis) {
+        signingConfigs {
+            release {
+              keyAlias System.getenv("keyAlias")
+              keyPassword System.getenv("keyPassword")
+              storeFile file('../../mood.jks')
+              storePassword System.getenv("storePassword")
+            }
+        }
+    } else {
+        signingConfigs {
+            release {
+              keyAlias keystoreProperties['keyAlias']
+              keyPassword keystoreProperties['keyPassword']
+              storeFile file(keystoreProperties['storeFile'])
+              storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+
+            minifyEnabled false
+            useProguard false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
