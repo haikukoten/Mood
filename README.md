@@ -1,5 +1,7 @@
 # 心悦
 
+[![build_state](https://travis-ci.org/microtears/Mood.svg?branch=master)](https://travis-ci.org/microtears/Mood)
+
 喜欢是淡淡的爱，爱是深深的喜欢。生活总会在不经意间给我们带来喜悦，也会在琐碎繁忙时刻让我们感到伤感。不论是大大的快乐，还是浅浅的悲伤，都是属于我们的记忆。若不动手记录下来，把他留在回忆里，终将会随着时间的流逝渐渐模糊。所以，何不将他们记录下来，书写属于自己的一首小情歌，等将来，再来回味。
 
 ## 开始启程
