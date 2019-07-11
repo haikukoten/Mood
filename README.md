@@ -1,16 +1,7 @@
-# mood
+# 心悦
 
-A new Flutter project.
+喜欢是淡淡的爱，爱是深深的喜欢。生活总会在不经意间给我们带来喜悦，也会在琐碎繁忙时刻让我们感到伤感。不论是大大的快乐，还是浅浅的悲伤，都是属于我们的记忆。若不动手记录下来，把他留在回忆里，终将会随着时间的流逝渐渐模糊。所以，何不将他们记录下来，书写属于自己的一首小情歌，等将来，再来回味。
 
-## Getting Started
+## 开始启程
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+脚下的路从这里启程，在这个项目里，我将会去实践最想实现的效果和功能。
