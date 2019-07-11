@@ -1,0 +1,2 @@
+GET http://www.google.com
+Content-Type: text/html; charset=ISO-8859-1
