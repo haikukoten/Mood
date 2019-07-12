@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:moon/data/mood.dart';
+import 'package:moon/page/images_grid.dart';
 import 'package:moon/page/mood_card.dart';
 import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
@@ -86,21 +87,22 @@ class _HomeState extends State<HomePage> {
             child: Consumer<MoodProvider>(
               builder: (BuildContext context, MoodProvider value, Widget child) =>
                   PageView.builder(
-                    controller: _pageController,
-                    itemCount: value.documents.length,
-                    itemBuilder: (BuildContext context, int index) => MoodCard(
-                          parent: context,
-                          index: index,
-                          color: colors[index % colors.length],
-                        ),
-                  ),
+                controller: _pageController,
+                itemCount: value.documents.length,
+                itemBuilder: (BuildContext context, int index) => MoodCard(
+                  parent: context,
+                  index: index,
+                  color: colors[index % colors.length],
+                ),
+              ),
             ),
           ),
-          Container(
-            child: Center(
-              child: Text("2"),
-            ),
-          ),
+          // Container(
+          //   child: Center(
+          //     child: Text("2"),
+          //   ),
+          // ),
+          ImagesGridScreen(),
           Container(
             child: Center(
               child: Text("3"),
