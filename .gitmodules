@@ -1,0 +1,6 @@
+[submodule "route_generator_repo"]
+	path = route_generator_repo
+	url = https://github.com/microtears/route_generator_repo.git
+[submodule "flutter_util"]
+	path = flutter_util
+	url = https://github.com/microtears/flutter_util.git

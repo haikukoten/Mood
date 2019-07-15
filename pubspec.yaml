@@ -46,10 +46,10 @@ dependencies:
   palette_generator: ^0.1.1
 
   route_annotation:
-    path: ../route_generator_repo/route_annotation
+    path: ./route_generator_repo/route_annotation
 
   mlibrary:
-    path: ../mlibrary
+    path: ./flutter_util
 
 
 
