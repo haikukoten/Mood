@@ -72,7 +72,7 @@ void performLayout() {
         // 每一行矩形右下角坐标(x,y,widget index)=>(mainAxisExtent,runCrossAxisExtent,childCount)
         // x==mainAxisExtent意味着充满这一行
         runMetrics.add(_RunMetrics(mainAxisExtent, runCrossAxisExtent, childCount));
-        // 修复最后一个Weiget的尺寸
+        // 修复最后一个Widget的尺寸
         BoxConstraints spaceConstraints;
         switch (direction) {
           case Axis.horizontal:

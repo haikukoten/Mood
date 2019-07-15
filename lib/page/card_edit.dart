@@ -62,15 +62,17 @@ class _CardEditPageState extends State<CardEditPage> {
     return await showModalBottomSheet(
       context: context,
       backgroundColor: Colors.white,
-      builder: (context) => ListTile(
-        title: TextField(
-          controller: controller,
-          decoration: InputDecoration(border: InputBorder.none),
-          onSubmitted: (text) {
-            Navigator.of(context).pop(text);
-          },
-        ),
-      ),
+      builder: (context) =>
+          // ListTile(
+          //   title: TextField(
+          //     controller: controller,
+          //     decoration: InputDecoration(border: InputBorder.none),
+          //     onSubmitted: (text) {
+          //       Navigator.of(context).pop(text);
+          //     },
+          //   ),
+          // ),
+          BottomEditWidget(controller: controller),
     );
   }
 
@@ -238,6 +240,7 @@ class _CardEditPageState extends State<CardEditPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
+                        // todo 用choiceChip包裹
                         MoodCircle(
                           key: _keys[0],
                           color: _colors[0],
@@ -271,6 +274,62 @@ class _CardEditPageState extends State<CardEditPage> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BottomEditWidget extends StatefulWidget {
+  final TextEditingController controller;
+  BottomEditWidget({Key key, this.controller}) : super(key: key);
+
+  _BottomEditWidgetState createState() => _BottomEditWidgetState();
+}
+
+class _BottomEditWidgetState extends State<BottomEditWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 15.0, left: 5.0, right: 5.0),
+      height: 160,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 10,
+            color: Colors.grey[300],
+            spreadRadius: 5,
+          )
+        ],
+      ),
+      child: DecoratedTextField(
+        hintText: "在这里输入哦",
+        controller: widget.controller,
+      ),
+    );
+  }
+}
+
+class DecoratedTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  const DecoratedTextField({Key key, @required this.hintText, this.controller}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration.collapsed(hintText: hintText),
       ),
     );
   }

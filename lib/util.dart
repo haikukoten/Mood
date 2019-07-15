@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 /// 为了方便Vscode Color Highlight扩展高亮颜色而创建的工具函数
 ///
@@ -14,3 +15,14 @@ import 'package:flutter/material.dart';
 ///
 /// See also [fromARGB], which takes the opacity as an integer value.
 Color colorRGB(int r, int g, int b, [double opacity = 1]) => Color.fromRGBO(r, g, b, opacity);
+
+final logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 0,
+    errorMethodCount: 3,
+    lineLength: 72,
+    colors: true,
+    printEmojis: true,
+    printTime: true,
+  ),
+);

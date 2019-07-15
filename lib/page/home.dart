@@ -102,6 +102,7 @@ class _HomeState extends State<HomePage> {
           //     child: Text("2"),
           //   ),
           // ),
+          
           ImagesGridScreen(),
           Container(
             child: Center(
