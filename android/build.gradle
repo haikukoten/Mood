@@ -29,12 +29,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-subprojects {
-    project.configurations.all {
-        resolutionStrategy.eachDependency { details ->
-            if (details.requested.name == 'exifinterface'  && !details.requested.name.contains('multidex') ) {
-                details.useVersion "1.0.0"
-            }
-        }
-    }
-}
+// subprojects {
+//     project.configurations.all {
+//         resolutionStrategy.eachDependency { details ->
+//             if (details.requested.name == 'exifinterface'  && !details.requested.name.contains('multidex') ) {
+//                 details.useVersion "1.0.0"
+//             }
+//         }
+//     }
+// }
