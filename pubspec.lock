@@ -350,7 +350,7 @@ packages:
   mlibrary:
     dependency: "direct main"
     description:
-      path: "..\\mlibrary"
+      path: flutter_util
       relative: true
     source: path
     version: "0.0.1"
@@ -441,7 +441,7 @@ packages:
   route_annotation:
     dependency: "direct main"
     description:
-      path: "..\\route_generator_repo\\route_annotation"
+      path: "route_generator_repo\\route_annotation"
       relative: true
     source: path
     version: "0.0.1"
