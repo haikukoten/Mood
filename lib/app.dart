@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moon/app.route.dart';
+import 'package:moon/data/auth.dart';
 import 'package:moon/data/mood.dart';
+import 'package:moon/data/storage.dart';
+import 'package:moon/vision/vision_util.dart';
 import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
 
@@ -14,9 +17,15 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider.value(value: MoodProvider())],
+      providers: [
+        ChangeNotifierProvider.value(value: MoodProvider()),
+        ChangeNotifierProvider.value(value: Auths()),
+        ChangeNotifierProvider.value(value: Vision()),
+        ChangeNotifierProvider.value(value: StorageProvider()),
+      ],
       child: MaterialApp(
         initialRoute: "/",
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.white,

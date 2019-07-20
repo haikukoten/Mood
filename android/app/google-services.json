@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "334556602297-3b289503nnlb39o4behr9c691d53s22v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.microtears.mood",
+            "certificate_hash": "50bcec75275713dc8656343c5d2bb641dca92520"
+          }
+        },
+        {
+          "client_id": "334556602297-k9nleqmt26lhilkpajupd5nn0r8o5r2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.microtears.mood",
+            "certificate_hash": "c80aa02cbba11850c50156642a9e36e0cd465f22"
+          }
+        },
+        {
           "client_id": "334556602297-02p0n7o3me288n7v2f3o8c8r409s4tjp.apps.googleusercontent.com",
           "client_type": 3
         }

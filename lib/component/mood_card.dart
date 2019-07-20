@@ -21,7 +21,7 @@ class MoodCard extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 9 / 16,
           child: GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(ROUTE_CARD_EDIT_PAGE, arguments: index),
+            onTap: () => Navigator.of(context).pushNamed(ROUTE_CARD_PAGE, arguments: index),
             child: Hero(
               tag: "home_card_$index",
               child: Card(
