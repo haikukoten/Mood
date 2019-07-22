@@ -23,6 +23,7 @@ dependencies:
   google_sign_in: ^4.0.4
   firebase_storage: ^3.0.3
   flutter_cache_manager: ^1.1.0
+  video_player: ^0.10.1+5
 
   cupertino_icons: ^0.1.2
 

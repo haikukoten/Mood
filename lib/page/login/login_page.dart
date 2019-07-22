@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mlibrary/mlibrary.dart';
 import 'package:moon/app.route.dart';
@@ -8,6 +10,7 @@ import 'package:moon/page/login/welcome_screen.dart';
 import 'package:moon/util.dart';
 import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
+import 'package:video_player/video_player.dart';
 
 // const ROUTE_LOGIN_PAGE = "login_page";
 
@@ -60,6 +63,9 @@ class _LoginPageState extends State<LoginPage> {
   final PageController _pageController = PageController();
   Tween<Alignment> aligment;
   Tween<double> avatarSize;
+  Tween<double> videoOpacity;
+
+  VideoPlayerController _videoPlayerController;
 
   void animatedTo(int page) =>
       _pageController.animateToPage(page, duration: duration, curve: curve);
@@ -83,13 +89,23 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     aligment = AlignmentTween(begin: Alignment(0, -0.8), end: Alignment(-0.8, -0.8));
     avatarSize = Tween(begin: 54, end: 32);
+    videoOpacity = Tween(begin: 1, end: 0);
     _pageController.addListener(() => setState(() {}));
+    final url = "https://assets.mixkit.co/videos/99555/99555-720.mp4";
+    _videoPlayerController = VideoPlayerController.network(url)
+      ..initialize().then((_) => setState(() {
+            _videoPlayerController.play();
+            _videoPlayerController.setLooping(true);
+            _videoPlayerController.setVolume(0);
+            logger.d("vidoe player initialized");
+          }));
   }
 
   @override
   void dispose() {
     super.dispose();
     _pageController.dispose();
+    _videoPlayerController.dispose();
   }
 
   @override
@@ -116,6 +132,35 @@ class _LoginPageState extends State<LoginPage> {
                       end: Alignment.bottomLeft,
                       colors: theme.currentColors,
                     ),
+                  ),
+                  child: Center(
+                    child: _videoPlayerController.value.initialized
+                        ? Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.identity()
+                              ..rotateZ(pi / 2)
+                              ..scale(
+                                  (MediaQuery.of(context).size.width +
+                                          MediaQuery.of(context).padding.top) /
+                                      100,
+                                  MediaQuery.of(context).size.width / 100,
+                                  0),
+                            // angle: 0,
+                            child: Opacity(
+                              opacity: videoOpacity.transform(_animValue),
+                              child: Container(
+                                // height: MediaQuery.of(context).size.width,
+                                height: 100,
+
+                                child: AspectRatio(
+                                    aspectRatio: _videoPlayerController.value.aspectRatio,
+                                    child: VideoPlayer(_videoPlayerController)),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            color: Colors.white.withOpacity(0.4),
+                          ),
                   ),
                 ),
               ),
