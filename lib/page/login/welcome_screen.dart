@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mlibrary/mlibrary.dart';
 import 'package:moon/app.route.dart';
+import 'package:moon/component/theme.dart';
 import 'package:moon/page/login/login_page.dart';
+import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -46,12 +48,14 @@ class WelcomeScreen extends StatelessWidget {
               highlightElevation: 4,
               shape: StadiumBorder(),
               onPressed: () {
-                LoginPage.loginPageKey.currentState.goToPage(1);
+                LoginPage.loginPageKey.currentState.animatedTo(1);
               },
-              child: Text(
-                "Hi Mood",
-                style: TextStyle(
-                  color: Color(0xFF9F44D3),
+              child: Consumer<AppTheme>(
+                builder: (context, theme, child) => Text(
+                  "Hi Mood",
+                  style: TextStyle(
+                    color: theme.accentColor,
+                  ),
                 ),
               ),
             ),

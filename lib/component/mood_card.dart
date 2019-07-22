@@ -8,8 +8,9 @@ class MoodCard extends StatelessWidget {
   final BuildContext parent;
   final int index;
   final Color color;
+  final double parallaxOffset;
 
-  MoodCard({Key key, this.parent, this.index, this.color}) : super(key: key);
+  MoodCard({Key key, this.parent, this.index, this.color, this.parallaxOffset}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +38,32 @@ class MoodCard extends StatelessWidget {
                         aspectRatio: 2 / 1,
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
-                          child: CachedNetworkImage(
-                            imageUrl: value.headImage,
-                            placeholder: (context, url) =>
-                                Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                Center(child: Icon(Icons.error)),
-                            fit: BoxFit.cover,
+                          child: LayoutBuilder(
+                            builder: (BuildContext context, BoxConstraints constraints) =>
+                                Transform(
+                              alignment: Alignment.center,
+                              transform: Matrix4.identity()
+                                // 视差效果
+                                ..translate(-parallaxOffset * constraints.biggest.width * 0.3)
+                                ..scale(1.4, 1.4, 0),
+                              child: CachedNetworkImage(
+                                imageUrl: value.headImage,
+                                placeholder: (context, url) =>
+                                    Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
+                                    Center(child: Icon(Icons.error)),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                      Text(
-                        value.title,
-                        style: TextStyle(fontSize: 24),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12),
+                        child: Text(
+                          value.title,
+                          style: TextStyle(fontSize: 24),
+                        ),
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 16),

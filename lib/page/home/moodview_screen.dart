@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moon/component/theme.dart';
 import 'dart:math';
 import 'package:moon/data/mood.dart';
 import 'package:moon/component/mood_card.dart';
@@ -21,8 +22,6 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
 
   double get page {
     try {
-      logger.d("page=${_pageController.page}");
-      logger.d("index=${_pageController.page.floor()}");
       return _pageController.page;
     } catch (e) {
       return 0.0;
@@ -32,7 +31,6 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
   double get parallaxOffset {
     var p = page;
     p = _lastPosition >= p ? p.floor() - p : -(p.floor() - p);
-    debugPrint("offset=$p");
     return p;
   }
 
@@ -56,16 +54,30 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: currentColor,
-      child: Consumer<MoodProvider>(
-        builder: (BuildContext context, MoodProvider value, Widget child) => PageView.builder(
-          controller: _pageController,
-          itemCount: value.documents.length,
-          itemBuilder: (BuildContext context, int index) => MoodCard(
-            parent: context,
-            index: index,
-            color: colors[index % colors.length],
+    return Consumer<AppTheme>(
+      builder: (BuildContext context, AppTheme theme, Widget child) => Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: theme.currentColors,
+          ),
+        ),
+        child: child,
+      ),
+      child: Container(
+        // color: currentColor.withAlpha(120),
+        child: Consumer<MoodProvider>(
+          builder: (BuildContext context, MoodProvider value, Widget child) => PageView.builder(
+            controller: _pageController,
+            itemCount: value.documents.length,
+            itemBuilder: (BuildContext context, int index) => MoodCard(
+              parent: context,
+              index: index,
+              color: colors[index % colors.length],
+              // 视差效果
+              parallaxOffset: index - page,
+            ),
           ),
         ),
       ),

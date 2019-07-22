@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:moon/data/mood.dart';
+import 'package:moon/util.dart';
 import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
 import 'package:flutter/services.dart';
@@ -28,9 +29,7 @@ class CardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setEnabledSystemUIOverlays([]);
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent));
+    setTranslateStatusBar();
     final provider = Provider.of<MoodProvider>(context);
     final value = provider.documents[index];
     return Scaffold(
@@ -117,9 +116,9 @@ class CardPage extends StatelessWidget {
                   ),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Container(
-                        height: 10,
+                        height: 4,
                         width: 48,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -128,7 +127,7 @@ class CardPage extends StatelessWidget {
                             bottomLeft: Radius.circular(24),
                             bottomRight: Radius.circular(24),
                           ),
-                          color: Colors.white,
+                          color: Colors.white.withOpacity(0.8),
                         ),
                       ),
                     ),

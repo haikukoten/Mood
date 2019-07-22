@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mlibrary/mlibrary.dart';
 import 'package:moon/app.route.dart';
+import 'package:moon/component/theme.dart';
 import 'package:moon/page/login/nickname_screen.dart';
+import 'package:moon/page/login/theme_select.dart';
 import 'package:moon/page/login/welcome_screen.dart';
 import 'package:moon/util.dart';
+import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
 
 // const ROUTE_LOGIN_PAGE = "login_page";
@@ -58,16 +61,10 @@ class _LoginPageState extends State<LoginPage> {
   Tween<Alignment> aligment;
   Tween<double> avatarSize;
 
-  void goToPage(int page) =>
+  void animatedTo(int page) =>
       _pageController.animateToPage(page, duration: duration, curve: curve);
 
-  double get _page {
-    try {
-      return _pageController.page;
-    } catch (e) {
-      return 0;
-    }
-  }
+  double get _page => getPage(_pageController);
 
   double get _animValue => _page < 0.999999 ? _page - _page.floor() : 1;
 
@@ -75,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
     int currentPage = _page.floor();
     logger.d("page=$currentPage|result=${!(currentPage - 1 > 0)}");
     if (currentPage - 1 >= 0) {
-      goToPage(currentPage - 1);
+      animatedTo(currentPage - 1);
       return false;
     }
     return true;
@@ -90,7 +87,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    setTranslateStatusBar();
+    final pages = <Widget>[
+      WelcomeScreen(),
+      NickNameScreen(),
+      ThemeSelectScreen(),
+    ];
     return Theme(
       data: ThemeData.dark(),
       child: WillPopScope(
@@ -99,15 +108,14 @@ class _LoginPageState extends State<LoginPage> {
           body: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color(0xFFE2B0FF),
-                      Color(0xFF9F44D3),
-                    ],
+              Consumer<AppTheme>(
+                builder: (context, theme, child) => Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: theme.currentColors,
+                    ),
                   ),
                 ),
               ),
@@ -115,10 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _pageController,
                 scrollDirection: Axis.vertical,
                 physics: NeverScrollableScrollPhysics(),
-                children: <Widget>[
-                  WelcomeScreen(),
-                  NickNameScreen(),
-                ],
+                children: pages,
               ),
               Align(
                 alignment: aligment.transform(_animValue),
@@ -130,20 +135,26 @@ class _LoginPageState extends State<LoginPage> {
               Positioned(
                 right: 24.0 - 16,
                 bottom: 24,
-                child: Column(
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.keyboard_arrow_up),
-                      onPressed: () =>
-                          _pageController.previousPage(duration: duration, curve: curve),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.keyboard_arrow_down),
-                      onPressed: () => _page.floor() != 1
-                          ? _pageController.nextPage(duration: duration, curve: curve)
-                          : Navigator.pushNamed(context, ROUTE_HOME_PAGE),
-                    ),
-                  ],
+                child: Offstage(
+                  offstage: _page.floor() == 0,
+                  child: Column(
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          Icons.keyboard_arrow_up,
+                          color: Colors.white.withOpacity(0.5),
+                        ),
+                        onPressed: () =>
+                            _pageController.previousPage(duration: duration, curve: curve),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        onPressed: () => _page.floor() != pages.length - 1
+                            ? _pageController.nextPage(duration: duration, curve: curve)
+                            : Navigator.pushNamed(context, ROUTE_HOME_PAGE),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

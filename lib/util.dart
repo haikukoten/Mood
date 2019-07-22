@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 
 /// 为了方便Vscode Color Highlight扩展高亮颜色而创建的工具函数
@@ -26,3 +27,19 @@ final logger = Logger(
     printTime: true,
   ),
 );
+
+/// 用来获取[PageController]所绑定的PageView的当前page,当未绑定时将返回0
+double getPage(PageController controller) {
+  try {
+    return controller.page;
+  } catch (e) {
+    return 0;
+  }
+}
+
+/// 设置透明状态栏
+void setTranslateStatusBar() => SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent));
+
+/// 设置全屏
+void setFullScreen() => SystemChrome.setEnabledSystemUIOverlays([]);

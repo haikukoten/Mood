@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moon/app.route.dart';
+import 'package:moon/component/theme.dart';
 import 'package:moon/data/auth.dart';
 import 'package:moon/data/mood.dart';
 import 'package:moon/data/storage.dart';
@@ -22,16 +23,19 @@ class _AppState extends State<App> {
         ChangeNotifierProvider.value(value: Auths()),
         ChangeNotifierProvider.value(value: Vision()),
         ChangeNotifierProvider.value(value: StorageProvider()),
+        ChangeNotifierProvider.value(value: AppTheme()),
       ],
-      child: MaterialApp(
-        initialRoute: "/",
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Colors.white,
-          accentColor: Colors.cyan[600],
+      child: Consumer<AppTheme>(
+        builder: (BuildContext context, value, Widget child) => MaterialApp(
+          initialRoute: "/",
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            primaryColor: Colors.white,
+            accentColor: Colors.cyan[600],
+          ),
+          onGenerateRoute: onGenerateRoute,
         ),
-        onGenerateRoute: onGenerateRoute,
       ),
     );
   }
