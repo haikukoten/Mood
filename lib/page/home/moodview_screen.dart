@@ -3,7 +3,6 @@ import 'package:moon/component/theme.dart';
 import 'dart:math';
 import 'package:moon/data/mood.dart';
 import 'package:moon/component/mood_card.dart';
-import 'package:moon/util.dart';
 import 'package:provider/provider.dart';
 
 class MoodViewScreen extends StatefulWidget {

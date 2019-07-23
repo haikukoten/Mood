@@ -4,3 +4,6 @@
 [submodule "flutter_util"]
 	path = flutter_util
 	url = https://github.com/microtears/flutter_util.git
+[submodule "asset_generator"]
+	path = asset_generator
+	url = git@github.com:microtears/asset_generator.git

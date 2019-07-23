@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mlibrary/mlibrary.dart';
 
 class NickNameScreen extends StatefulWidget {
   @override

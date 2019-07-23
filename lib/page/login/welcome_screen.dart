@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mlibrary/mlibrary.dart';
-import 'package:moon/app.route.dart';
 import 'package:moon/component/theme.dart';
 import 'package:moon/page/login/login_page.dart';
 import 'package:provider/provider.dart';
-import 'package:route_annotation/route_annotation.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override

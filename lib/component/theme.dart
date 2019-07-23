@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class AppTheme with ChangeNotifier {
   static final List<List<Color>> colorList = [

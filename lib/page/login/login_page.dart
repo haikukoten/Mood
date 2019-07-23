@@ -134,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   child: Center(
+                    // todo 更换视频动画为flare动画
                     child: _videoPlayerController.value.initialized
                         ? Transform(
                             alignment: Alignment.center,
