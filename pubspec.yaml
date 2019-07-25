@@ -71,7 +71,7 @@ flutter:
 
   assets:
    # assets begin
-   - assets/flare
+   - assets/flare/
    # assets end
 
   # An image asset can refer to one or more resolution-specific "variants", see
