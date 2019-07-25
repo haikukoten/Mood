@@ -65,7 +65,7 @@ dev_dependencies:
   json_serializable: ^3.0.0
   build_runner: ^1.5.0
   route_generator:
-    path: ../route_generator_repo/route_generator
+    path: ./route_generator_repo/route_generator
 flutter:
   uses-material-design: true
 
