@@ -27,15 +27,16 @@ addons:
     - libstdc++6
     - fonts-droid
 before_install:
-- openssl aes-256-cbc -K $encrypted_d2e7c15ed967_key -iv $encrypted_d2e7c15ed967_iv
+- openssl aes-256-cbc -K $encrypted_591be3b350cb_key -iv $encrypted_591be3b350cb_iv
   -in mood.jks.enc -out mood.jks -d
-- git clone -b alpha https://github.com/flutter/flutter.git
+- git clone -b master https://github.com/flutter/flutter.git
+- export PATH="$PATH:$PWD/flutter/bin/"
+- flutter channel stable
+- flutter upgrade
 - wget http://services.gradle.org/distributions/gradle-4.10.2-all.zip
 - unzip gradle-4.10.2-all.zip
 - export GRADLE_HOME=$PWD/gradle-4.10.2-all
 - export PATH=$GRADLE_HOME/bin:$PATH
-- git clone -b master https://github.com/flutter/flutter.git
-- export PATH=./flutter/bin:$PATH
 script:
 - "./flutter/bin/flutter upgrade"
 - "./flutter/bin/flutter -v build apk"
