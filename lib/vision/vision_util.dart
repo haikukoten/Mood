@@ -11,8 +11,10 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 class Vision with ChangeNotifier {
   final labelerSet = <ImageLabeler>{};
 
-  Future<FirebaseVisionImage> _getVisionImageFromImage(Image widget, BuildContext context) async {
-    final ImageStream newStream = widget.image.resolve(createLocalImageConfiguration(
+  Future<FirebaseVisionImage> _getVisionImageFromImage(
+      Image widget, BuildContext context) async {
+    final ImageStream newStream =
+        widget.image.resolve(createLocalImageConfiguration(
       context,
       size: widget.width != null && widget.height != null
           ? Size(widget.width, widget.height)
@@ -39,7 +41,8 @@ class Vision with ChangeNotifier {
   Future<FirebaseVisionImage> _getVisionImageFromCachedNetworkImageProvider(
       CachedNetworkImageProvider provider) async {
     final mngr = provider.cacheManager ?? DefaultCacheManager();
-    var file = await mngr.getSingleFile(provider.url, headers: provider.headers);
+    var file =
+        await mngr.getSingleFile(provider.url, headers: provider.headers);
     final visionImage = FirebaseVisionImage.fromFile(file);
     return visionImage;
   }
@@ -56,14 +59,19 @@ class Vision with ChangeNotifier {
     String filePath,
     File file,
   }) async {
-    assert(!(imageKey == null && provider == null && filePath == null && file == null),
+    assert(
+        !(imageKey == null &&
+            provider == null &&
+            filePath == null &&
+            file == null),
         "Must have a parameter that is not null");
     FirebaseVisionImage visionImage;
     if (imageKey != null) {
-      visionImage =
-          await _getVisionImageFromImage(imageKey.currentWidget, imageKey.currentContext);
+      visionImage = await _getVisionImageFromImage(
+          imageKey.currentWidget, imageKey.currentContext);
     } else if (provider != null) {
-      visionImage = await _getVisionImageFromCachedNetworkImageProvider(provider);
+      visionImage =
+          await _getVisionImageFromCachedNetworkImageProvider(provider);
     } else if (filePath != null) {
       visionImage = FirebaseVisionImage.fromFilePath(filePath);
     } else if (file != null) {

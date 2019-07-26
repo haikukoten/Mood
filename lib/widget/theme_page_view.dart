@@ -32,8 +32,8 @@ class ThemePageViewState extends State<ThemePageView> {
   @override
   void initState() {
     super.initState();
-    _pageController =
-        PageController(initialPage: widget.currentThemeIndex, viewportFraction: 0.33);
+    _pageController = PageController(
+        initialPage: widget.currentThemeIndex, viewportFraction: 0.33);
     _pageController.addListener(() => setState(() {}));
   }
 

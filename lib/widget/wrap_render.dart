@@ -279,7 +279,8 @@ class FilledRenderWrap extends RenderBox
           break;
       }
     }
-    if (runAlignment == WrapAlignment.start || runAlignment == WrapAlignment.end) {
+    if (runAlignment == WrapAlignment.start ||
+        runAlignment == WrapAlignment.end) {
       switch (direction) {
         case Axis.horizontal:
           assert(verticalDirection != null,
@@ -309,7 +310,8 @@ class FilledRenderWrap extends RenderBox
 
   @override
   void setupParentData(RenderBox child) {
-    if (child.parentData is! FilledWrapParentData) child.parentData = FilledWrapParentData();
+    if (child.parentData is! FilledWrapParentData)
+      child.parentData = FilledWrapParentData();
   }
 
   double _computeIntrinsicHeightForWidth(double width) {
@@ -413,7 +415,8 @@ class FilledRenderWrap extends RenderBox
         double height = 0.0;
         RenderBox child = firstChild;
         while (child != null) {
-          height = math.max(height, child.getMinIntrinsicHeight(double.infinity));
+          height =
+              math.max(height, child.getMinIntrinsicHeight(double.infinity));
           child = childAfter(child);
         }
         return height;
@@ -473,8 +476,8 @@ class FilledRenderWrap extends RenderBox
     return Offset.zero;
   }
 
-  double _getChildCrossAxisOffset(
-      bool flipCrossAxis, double runCrossAxisExtent, double childCrossAxisExtent) {
+  double _getChildCrossAxisOffset(bool flipCrossAxis, double runCrossAxisExtent,
+      double childCrossAxisExtent) {
     final double freeSpace = runCrossAxisExtent - childCrossAxisExtent;
     switch (crossAxisAlignment) {
       case WrapCrossAlignment.start:
@@ -532,7 +535,8 @@ class FilledRenderWrap extends RenderBox
       child.layout(childConstraints, parentUsesSize: true);
       double childMainAxisExtent = _getMainAxisExtent(child);
       double childCrossAxisExtent = _getCrossAxisExtent(child);
-      if (childCount > 0 && runMainAxisExtent + spacing + childMainAxisExtent > mainAxisLimit) {
+      if (childCount > 0 &&
+          runMainAxisExtent + spacing + childMainAxisExtent > mainAxisLimit) {
         // 计算空余空间
         final mainAxisFreeSpace = mainAxisLimit - (runMainAxisExtent + spacing);
 
@@ -546,17 +550,20 @@ class FilledRenderWrap extends RenderBox
         //     "needFillLast=$needFillSpace,");
         // 如果剩余空间为0，那么不必处理剩余空间
         if (!needFillSpace) {
-          runMetrics.add(_RunMetrics(runMainAxisExtent, runCrossAxisExtent, childCount));
+          runMetrics.add(
+              _RunMetrics(runMainAxisExtent, runCrossAxisExtent, childCount));
         }
         // 否则
         else {
           // 重新调整runCrossAxisExtent
-          runCrossAxisExtent = math.max(runCrossAxisExtent, childCrossAxisExtent);
+          runCrossAxisExtent =
+              math.max(runCrossAxisExtent, childCrossAxisExtent);
           // 重新调整childCount
           childCount += 1;
           // 每一行矩形右下角坐标(x,y,widget index)=>(mainAxisExtent,runCrossAxisExtent,childCount)
           // x==mainAxisExtent意味着充满这一行
-          runMetrics.add(_RunMetrics(mainAxisExtent, runCrossAxisExtent, childCount));
+          runMetrics
+              .add(_RunMetrics(mainAxisExtent, runCrossAxisExtent, childCount));
           // 修复最后一个Widget的尺寸
           BoxConstraints spaceConstraints;
           switch (direction) {
@@ -597,7 +604,8 @@ class FilledRenderWrap extends RenderBox
       mainAxisExtent = math.max(mainAxisExtent, runMainAxisExtent);
       crossAxisExtent += runCrossAxisExtent;
       if (runMetrics.isNotEmpty) crossAxisExtent += runSpacing;
-      runMetrics.add(_RunMetrics(runMainAxisExtent, runCrossAxisExtent, childCount));
+      runMetrics
+          .add(_RunMetrics(runMainAxisExtent, runCrossAxisExtent, childCount));
     }
 
     final int runCount = runMetrics.length;
@@ -619,10 +627,11 @@ class FilledRenderWrap extends RenderBox
         break;
     }
 
-    _hasVisualOverflow =
-        containerMainAxisExtent < mainAxisExtent || containerCrossAxisExtent < crossAxisExtent;
+    _hasVisualOverflow = containerMainAxisExtent < mainAxisExtent ||
+        containerCrossAxisExtent < crossAxisExtent;
 
-    final double crossAxisFreeSpace = math.max(0.0, containerCrossAxisExtent - crossAxisExtent);
+    final double crossAxisFreeSpace =
+        math.max(0.0, containerCrossAxisExtent - crossAxisExtent);
     double runLeadingSpace = 0.0;
     double runBetweenSpace = 0.0;
     switch (runAlignment) {
@@ -635,7 +644,8 @@ class FilledRenderWrap extends RenderBox
         runLeadingSpace = crossAxisFreeSpace / 2.0;
         break;
       case WrapAlignment.spaceBetween:
-        runBetweenSpace = runCount > 1 ? crossAxisFreeSpace / (runCount - 1) : 0.0;
+        runBetweenSpace =
+            runCount > 1 ? crossAxisFreeSpace / (runCount - 1) : 0.0;
         break;
       case WrapAlignment.spaceAround:
         runBetweenSpace = crossAxisFreeSpace / runCount;
@@ -648,8 +658,9 @@ class FilledRenderWrap extends RenderBox
     }
 
     runBetweenSpace += runSpacing;
-    double crossAxisOffset =
-        flipCrossAxis ? containerCrossAxisExtent - runLeadingSpace : runLeadingSpace;
+    double crossAxisOffset = flipCrossAxis
+        ? containerCrossAxisExtent - runLeadingSpace
+        : runLeadingSpace;
 
     child = firstChild;
     for (int i = 0; i < runCount; ++i) {
@@ -658,7 +669,8 @@ class FilledRenderWrap extends RenderBox
       final double runCrossAxisExtent = metrics.crossAxisExtent;
       final int childCount = metrics.childCount;
       // debugPrint("runIndex=$i,childSize=$childCount");
-      final double mainAxisFreeSpace = math.max(0.0, containerMainAxisExtent - runMainAxisExtent);
+      final double mainAxisFreeSpace =
+          math.max(0.0, containerMainAxisExtent - runMainAxisExtent);
       // final double mainAxisFreeSpace = 0;
       double childLeadingSpace = 0.0;
       double childBetweenSpace = 0.0;
@@ -673,7 +685,8 @@ class FilledRenderWrap extends RenderBox
           childLeadingSpace = mainAxisFreeSpace / 2.0;
           break;
         case WrapAlignment.spaceBetween:
-          childBetweenSpace = childCount > 1 ? mainAxisFreeSpace / (childCount - 1) : 0.0;
+          childBetweenSpace =
+              childCount > 1 ? mainAxisFreeSpace / (childCount - 1) : 0.0;
           break;
         case WrapAlignment.spaceAround:
           childBetweenSpace = mainAxisFreeSpace / childCount;
@@ -686,8 +699,9 @@ class FilledRenderWrap extends RenderBox
       }
 
       childBetweenSpace += spacing;
-      double childMainPosition =
-          flipMainAxis ? containerMainAxisExtent - childLeadingSpace : childLeadingSpace;
+      double childMainPosition = flipMainAxis
+          ? containerMainAxisExtent - childLeadingSpace
+          : childLeadingSpace;
 
       if (flipCrossAxis) crossAxisOffset -= runCrossAxisExtent;
       // int debugIndex = 0;
@@ -696,13 +710,13 @@ class FilledRenderWrap extends RenderBox
         if (childParentData._runIndex != i) break;
         final double childMainAxisExtent = _getMainAxisExtent(child);
         final double childCrossAxisExtent = _getCrossAxisExtent(child);
-        final double childCrossAxisOffset =
-            _getChildCrossAxisOffset(flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent);
+        final double childCrossAxisOffset = _getChildCrossAxisOffset(
+            flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent);
         if (flipMainAxis) childMainPosition -= childMainAxisExtent;
         // debugPrint("rowIndex=$i,childIndexx=$debugIndex,"
         //     "x=$childMainPosition,y=${crossAxisOffset + childCrossAxisOffset}");
-        childParentData.offset =
-            _getOffset(childMainPosition - 0, crossAxisOffset + childCrossAxisOffset);
+        childParentData.offset = _getOffset(
+            childMainPosition - 0, crossAxisOffset + childCrossAxisOffset);
         if (flipMainAxis)
           childMainPosition -= childBetweenSpace;
         else
@@ -728,7 +742,8 @@ class FilledRenderWrap extends RenderBox
     // TODO(ianh): move the debug flex overflow paint logic somewhere common so
     // it can be reused here
     if (_hasVisualOverflow)
-      context.pushClipRect(needsCompositing, offset, Offset.zero & size, defaultPaint);
+      context.pushClipRect(
+          needsCompositing, offset, Offset.zero & size, defaultPaint);
     else
       defaultPaint(context, offset);
   }
@@ -742,9 +757,10 @@ class FilledRenderWrap extends RenderBox
     properties.add(EnumProperty<WrapAlignment>('runAlignment', runAlignment));
     properties.add(DoubleProperty('runSpacing', runSpacing));
     properties.add(DoubleProperty('crossAxisAlignment', runSpacing));
-    properties
-        .add(EnumProperty<TextDirection>('textDirection', textDirection, defaultValue: null));
-    properties.add(EnumProperty<VerticalDirection>('verticalDirection', verticalDirection,
+    properties.add(EnumProperty<TextDirection>('textDirection', textDirection,
+        defaultValue: null));
+    properties.add(EnumProperty<VerticalDirection>(
+        'verticalDirection', verticalDirection,
         defaultValue: VerticalDirection.down));
   }
 }

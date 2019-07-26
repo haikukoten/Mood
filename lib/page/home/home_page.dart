@@ -29,7 +29,8 @@ class _HomeState extends State<HomePage> {
         elevation: 0,
         shape: CircularNotchedRectangle(),
         child: Consumer<AppTheme>(
-          builder: (BuildContext context, AppTheme theme, Widget child) => Theme(
+          builder: (BuildContext context, AppTheme theme, Widget child) =>
+              Theme(
             data: Theme.of(context).copyWith(
               iconTheme: IconThemeData(
                 color: theme.accentColor,
@@ -40,8 +41,11 @@ class _HomeState extends State<HomePage> {
           child: Row(
             children: [
               IconButton(icon: Icon(Icons.home), onPressed: () => _jumpTo(0)),
-              IconButton(icon: Icon(Icons.trip_origin), onPressed: () => _jumpTo(1)),
-              IconButton(icon: Icon(Icons.settings_ethernet), onPressed: () => _jumpTo(2)),
+              IconButton(
+                  icon: Icon(Icons.trip_origin), onPressed: () => _jumpTo(1)),
+              IconButton(
+                  icon: Icon(Icons.settings_ethernet),
+                  onPressed: () => _jumpTo(2)),
             ],
             mainAxisAlignment: MainAxisAlignment.spaceAround,
           ),

@@ -12,13 +12,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        // image: DecorationImage(
-        //   image:
-        //       CachedNetworkImageProvider("https://w.wallhaven.cc/full/dg/wallhaven-dge7lg.png"),
-        //   fit: BoxFit.cover,
-        //   colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.1), BlendMode.lighten),
-        // ),
-      ),
+          // image: DecorationImage(
+          //   image:
+          //       CachedNetworkImageProvider("https://w.wallhaven.cc/full/dg/wallhaven-dge7lg.png"),
+          //   fit: BoxFit.cover,
+          //   colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.1), BlendMode.lighten),
+          // ),
+          ),
       child: Column(
         children: <Widget>[
           AppBar(

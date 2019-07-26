@@ -15,7 +15,8 @@ import 'package:logger/logger.dart';
 /// Out of range values are brought into range using modulo 255.
 ///
 /// See also [fromARGB], which takes the opacity as an integer value.
-Color colorRGB(int r, int g, int b, [double opacity = 1]) => Color.fromRGBO(r, g, b, opacity);
+Color colorRGB(int r, int g, int b, [double opacity = 1]) =>
+    Color.fromRGBO(r, g, b, opacity);
 
 final logger = Logger(
   printer: PrettyPrinter(

@@ -14,9 +14,16 @@ class Mood {
   String updateTime;
   String createTime;
 
-  Mood({this.id, this.title, this.content, this.headImage, this.updateTime, this.createTime});
+  Mood(
+      {this.id,
+      this.title,
+      this.content,
+      this.headImage,
+      this.updateTime,
+      this.createTime});
 
-  factory Mood.fromJson(Map<String, dynamic> json, [String id]) => _$MoodFromJson(json)..id = id;
+  factory Mood.fromJson(Map<String, dynamic> json, [String id]) =>
+      _$MoodFromJson(json)..id = id;
 
   Map<String, dynamic> toJson() => _$MoodToJson(this);
 }
@@ -60,8 +67,9 @@ class MoodProvider with ChangeNotifier {
     if (!_isListening) {
       _moodRef.snapshots().listen((data) {
         _isListening = true;
-        _documents =
-            data.documents.map((doc) => Mood.fromJson(doc.data, doc.documentID)).toList();
+        _documents = data.documents
+            .map((doc) => Mood.fromJson(doc.data, doc.documentID))
+            .toList();
         debugPrint("doc update：size=${_documents.length}");
         notifyListeners();
       });

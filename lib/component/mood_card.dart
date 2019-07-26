@@ -10,11 +10,13 @@ class MoodCard extends StatelessWidget {
   final Color color;
   final double parallaxOffset;
 
-  MoodCard({Key key, this.parent, this.index, this.color, this.parallaxOffset}) : super(key: key);
+  MoodCard({Key key, this.parent, this.index, this.color, this.parallaxOffset})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final value = Provider.of<MoodProvider>(context, listen: false).documents[index];
+    final value =
+        Provider.of<MoodProvider>(context, listen: false).documents[index];
     const radius = Radius.circular(8.0);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -22,7 +24,8 @@ class MoodCard extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 9 / 16,
           child: GestureDetector(
-            onTap: () => Navigator.of(context).pushNamed(ROUTE_CARD_PAGE, arguments: index),
+            onTap: () => Navigator.of(context)
+                .pushNamed(ROUTE_CARD_PAGE, arguments: index),
             child: Hero(
               tag: "home_card_$index",
               child: Card(
@@ -37,14 +40,18 @@ class MoodCard extends StatelessWidget {
                       AspectRatio(
                         aspectRatio: 2 / 1,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.only(topLeft: radius, topRight: radius),
+                          borderRadius: BorderRadius.only(
+                              topLeft: radius, topRight: radius),
                           child: LayoutBuilder(
-                            builder: (BuildContext context, BoxConstraints constraints) =>
+                            builder: (BuildContext context,
+                                    BoxConstraints constraints) =>
                                 Transform(
                               alignment: Alignment.center,
                               transform: Matrix4.identity()
                                 // 视差效果
-                                ..translate(-parallaxOffset * constraints.biggest.width * 0.3)
+                                ..translate(-parallaxOffset *
+                                    constraints.biggest.width *
+                                    0.3)
                                 ..scale(1.4, 1.4, 0),
                               child: CachedNetworkImage(
                                 imageUrl: value.headImage,

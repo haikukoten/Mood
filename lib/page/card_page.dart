@@ -33,10 +33,11 @@ class CardPage extends StatelessWidget {
     final value = provider.documents[index];
     return Scaffold(
       body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => [
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
+            [
           SliverAppBar(
-            expandedHeight:
-                MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top, //展开高度200
+            expandedHeight: MediaQuery.of(context).size.height -
+                MediaQuery.of(context).padding.top, //展开高度200
             // leading: Container(),
             automaticallyImplyLeading: false,
             // iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
@@ -69,7 +70,8 @@ class CardPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 8.0),
+                    padding: const EdgeInsets.only(
+                        left: 24.0, right: 24.0, bottom: 8.0),
                     child: Text(
                       DateFormat('M-dd').format(DateTime.now()),
                       style: TextStyle(
@@ -79,7 +81,8 @@ class CardPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 12.0),
+                    padding: const EdgeInsets.only(
+                        left: 24.0, right: 24.0, bottom: 12.0),
                     child: Text(
                       value.title,
                       style: TextStyle(
@@ -96,18 +99,21 @@ class CardPage extends StatelessWidget {
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemCount: debugTags.length,
-                        itemBuilder: (BuildContext context, int index) => debugTags[index] == ""
-                            ? SizedBox(width: 16)
-                            : Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(23),
-                                  color: Colors.white.withOpacity(0.5),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 12, right: 12),
-                                  child: Center(child: Text(debugTags[index])),
-                                ),
-                              ),
+                        itemBuilder: (BuildContext context, int index) =>
+                            debugTags[index] == ""
+                                ? SizedBox(width: 16)
+                                : Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(23),
+                                      color: Colors.white.withOpacity(0.5),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 12, right: 12),
+                                      child:
+                                          Center(child: Text(debugTags[index])),
+                                    ),
+                                  ),
                         separatorBuilder: (BuildContext context, int index) =>
                             SizedBox(width: 12),
                       ),

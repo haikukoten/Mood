@@ -25,11 +25,14 @@ class CircleContainer extends StatelessWidget {
     return Container(
       color: backgroundColor,
       child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) => CustomPaint(
+        builder: (BuildContext context, BoxConstraints constraints) =>
+            CustomPaint(
           size: constraints.biggest,
           painter: CirclePainter(
             radius,
-            position ?? Offset(constraints.biggest.width / 2, constraints.biggest.height / 2),
+            position ??
+                Offset(constraints.biggest.width / 2,
+                    constraints.biggest.height / 2),
             color,
           ),
           child: child,

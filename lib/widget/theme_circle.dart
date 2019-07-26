@@ -25,7 +25,8 @@ class ThemeCircle extends StatelessWidget {
         padding: padding,
         child: Container(
           padding: EdgeInsets.all(edge),
-          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+          decoration:
+              BoxDecoration(shape: BoxShape.circle, color: Colors.white),
           height: size,
           width: size,
           child: Container(

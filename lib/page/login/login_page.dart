@@ -87,7 +87,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    aligment = AlignmentTween(begin: Alignment(0, -0.8), end: Alignment(-0.8, -0.8));
+    aligment =
+        AlignmentTween(begin: Alignment(0, -0.8), end: Alignment(-0.8, -0.8));
     avatarSize = Tween(begin: 54, end: 32);
     videoOpacity = Tween(begin: 1, end: 0);
     _pageController.addListener(() => setState(() {}));
@@ -154,7 +155,8 @@ class _LoginPageState extends State<LoginPage> {
                                 height: 100,
 
                                 child: AspectRatio(
-                                    aspectRatio: _videoPlayerController.value.aspectRatio,
+                                    aspectRatio: _videoPlayerController
+                                        .value.aspectRatio,
                                     child: VideoPlayer(_videoPlayerController)),
                               ),
                             ),
@@ -190,13 +192,14 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.keyboard_arrow_up,
                           color: Colors.white.withOpacity(0.5),
                         ),
-                        onPressed: () =>
-                            _pageController.previousPage(duration: duration, curve: curve),
+                        onPressed: () => _pageController.previousPage(
+                            duration: duration, curve: curve),
                       ),
                       IconButton(
                         icon: Icon(Icons.keyboard_arrow_down),
                         onPressed: () => _page.floor() != pages.length - 1
-                            ? _pageController.nextPage(duration: duration, curve: curve)
+                            ? _pageController.nextPage(
+                                duration: duration, curve: curve)
                             : Navigator.pushNamed(context, ROUTE_HOME_PAGE),
                       ),
                     ],

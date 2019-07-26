@@ -94,14 +94,18 @@ class _CardEditPageState extends State<CardEditPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _maxRadius = max(MediaQuery.of(context).size.height, MediaQuery.of(context).size.width) + 56;
+    _maxRadius = max(MediaQuery.of(context).size.height,
+            MediaQuery.of(context).size.width) +
+        56;
   }
 
   @override
   Widget build(BuildContext context) {
     //build animation
-    final tween = MultiTrackTween(
-        [Track("radius").add(Duration(milliseconds: 400), Tween(begin: 0.0, end: _maxRadius))]);
+    final tween = MultiTrackTween([
+      Track("radius")
+          .add(Duration(milliseconds: 400), Tween(begin: 0.0, end: _maxRadius))
+    ]);
     return ControlledAnimation(
       playback: Playback.START_OVER_FORWARD,
       duration: tween.duration,
@@ -196,19 +200,22 @@ class _CardEditPageState extends State<CardEditPage> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            onTap: () => Navigator.of(context).pushNamed(ROUTE_IMAGE_PREVIEW_PAGE,
+                            onTap: () => Navigator.of(context).pushNamed(
+                                ROUTE_IMAGE_PREVIEW_PAGE,
                                 arguments: {"imageUrl": value.headImage}),
                           ),
                           Positioned(
                             top: 0,
                             right: 0,
                             child: FlatButton.icon(
-                              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
                               padding: EdgeInsets.zero,
                               color: colorRGB(98, 0, 238, 0.8),
                               textColor: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(24)),
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(24)),
                               ),
                               icon: Icon(Icons.photo_library),
                               label: Text("3"),
@@ -314,7 +321,8 @@ class _BottomEditWidgetState extends State<BottomEditWidget> {
 class DecoratedTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  const DecoratedTextField({Key key, @required this.hintText, this.controller}) : super(key: key);
+  const DecoratedTextField({Key key, @required this.hintText, this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

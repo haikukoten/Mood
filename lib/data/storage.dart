@@ -35,7 +35,8 @@ class StorageProvider with ChangeNotifier {
     final task = fileReference.putFile(file);
     if (listen) {
       task.events.listen(
-        (data) => onProgress(data.snapshot.bytesTransferred / data.snapshot.totalByteCount),
+        (data) => onProgress(
+            data.snapshot.bytesTransferred / data.snapshot.totalByteCount),
         onError: onError,
         onDone: () async => onCompleted(await fileReference.getDownloadURL()),
       );

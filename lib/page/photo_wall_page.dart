@@ -25,8 +25,10 @@ class ImagesGridPage extends StatelessWidget {
                   // ),
                   child: CachedNetworkImage(
                     imageUrl: url,
-                    placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) =>
+                        Center(child: Icon(Icons.error)),
                     height: 180,
                     fit: BoxFit.cover,
                   ),

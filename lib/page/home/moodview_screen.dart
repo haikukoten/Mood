@@ -16,8 +16,8 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
   PageController _pageController;
   List<Color> colors;
 
-  Color get _randomColor =>
-      Color.fromARGB(255, _random.nextInt(255), _random.nextInt(255), _random.nextInt(255));
+  Color get _randomColor => Color.fromARGB(
+      255, _random.nextInt(255), _random.nextInt(255), _random.nextInt(255));
 
   double get page {
     try {
@@ -33,15 +33,17 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
     return p;
   }
 
-  Color get currentColor => Color.lerp(
-      colors[page.toInt()], colors[(page.toInt() + 1) % colors.length], parallaxOffset);
+  Color get currentColor => Color.lerp(colors[page.toInt()],
+      colors[(page.toInt() + 1) % colors.length], parallaxOffset);
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController(viewportFraction: 0.8);
     colors = List.generate(
-        20, (index) => Color.alphaBlend(Colors.white.withOpacity(0.4), _randomColor));
+        20,
+        (index) =>
+            Color.alphaBlend(Colors.white.withOpacity(0.4), _randomColor));
     _pageController.addListener(() => setState(() {}));
   }
 
@@ -54,7 +56,8 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppTheme>(
-      builder: (BuildContext context, AppTheme theme, Widget child) => Container(
+      builder: (BuildContext context, AppTheme theme, Widget child) =>
+          Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -67,7 +70,8 @@ class _MoodViewScreenState extends State<MoodViewScreen> {
       child: Container(
         // color: currentColor.withAlpha(120),
         child: Consumer<MoodProvider>(
-          builder: (BuildContext context, MoodProvider value, Widget child) => PageView.builder(
+          builder: (BuildContext context, MoodProvider value, Widget child) =>
+              PageView.builder(
             controller: _pageController,
             itemCount: value.documents.length,
             itemBuilder: (BuildContext context, int index) => MoodCard(
