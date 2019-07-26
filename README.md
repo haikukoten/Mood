@@ -25,8 +25,8 @@
 
 ### 浮现的问题
 
-1. [**CI脚本运行错误**](questions/CI脚本运行错误.md)
+1. [**Travis CI 脚本相关问题**](https://www.microtears.design/post/ZLJCVmnE2/)
 
 ### 意料之外的成果
 
-1. [**wrap改造充满整行的流式布局**](questions/wrap改造充满整行的流式布局.md)
+1. [**wrap改造充满整行的流式布局**](https://www.microtears.design/post/wrap-gai-zao-chong-man-zheng-xing-de-liu-shi-bu-ju/)
