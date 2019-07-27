@@ -8,11 +8,12 @@ part of 'mood.dart';
 
 Mood _$MoodFromJson(Map<String, dynamic> json) {
   return Mood(
-      title: json['title'] as String,
-      content: json['content'] as String,
-      headImage: json['headImage'] as String,
-      updateTime: json['updateTime'] as String,
-      createTime: json['createTime'] as String);
+    title: json['title'] as String,
+    content: json['content'] as String,
+    headImage: json['headImage'] as String,
+    updateTime: json['updateTime'] as String,
+    createTime: json['createTime'] as String,
+  );
 }
 
 Map<String, dynamic> _$MoodToJson(Mood instance) => <String, dynamic>{
@@ -20,5 +21,5 @@ Map<String, dynamic> _$MoodToJson(Mood instance) => <String, dynamic>{
       'content': instance.content,
       'headImage': instance.headImage,
       'updateTime': instance.updateTime,
-      'createTime': instance.createTime
+      'createTime': instance.createTime,
     };

@@ -28,6 +28,7 @@ class _AppState extends State<App> {
       child: Consumer<AppTheme>(
         builder: (BuildContext context, value, Widget child) => MaterialApp(
           initialRoute: "/",
+          // initialRoute: ROUTE_HOME_PAGE,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             brightness: Brightness.light,

@@ -1,5 +1,7 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:mlibrary/mlibrary.dart';
+import 'package:moon/resource.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -93,6 +95,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ],
               ),
             ],
+          ),
+          Spacer(),
+          Container(
+            height: 100,
+            // color: Colorss.blueAccent,
+            child: FlareActor(
+              R.iconPencil,
+              animation: "Edit Icon",
+            ),
           ),
         ],
       ),
