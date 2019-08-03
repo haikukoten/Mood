@@ -1,11 +1,8 @@
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flare_flutter/flare_controller.dart';
-import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:moon/component/conuter_controller.dart';
 import 'package:moon/resource.dart';
 import 'package:moon/util.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 class DataScreen extends StatefulWidget {
   final int currentIndex;

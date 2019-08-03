@@ -48,10 +48,10 @@ script:
 
 deploy:
   provider: releases
-  tags: true
   api_key:
     secure: qxVz66a2nUar3qFQWysslQdq1WJleBBT7QddbKWF6OQrC34BLX9Hzt591+qBP2Glr9fbrEOSdmkiKctRw5gkWNmKd9H5DmsCZoLwLiWGoJVP+2LHvbp0WyPnO0KmzEzvdyZ6uX7/2EdGLY1YbeYODmkgNyW/o6pTk3bvivtAd5rsO/BzMwrW1nZm90AbvUlNXravFfGMtgBvCreBjVimmPfS/KcUafUuf5Xc1R9hm6a0RSGmsWgJcDKyiwku76SY/OhwdyP1/9xsmKLyMk8EHiCAKSqOupaW41/xNiIeyBz6RbwgOmHk+0OYfOwGXSqradK9shHfQlZu4G0G6n69l2nsYumFxzXEjEn7DXenPRyoGfeqZjFrqYxUq9Y0NIKBQ+T1NWfVrbNSHL4uWAwAHzzI/X1426shjF1jmDsqt025fmCqgGYa6WjWCNx4nnkBpnlv/KS4knIQm/YD7Qf5VKkHdB92UhNO4xA8elEf50INJcpGrlmac6tdpvcyFiPkbgjgJlb3J83yIpx18U7xY8eg6u2EpEsxiYByyOdH8qDAOP4WroGmhOfJB2s0ic6pyPmtIzhjStzUrFUJZsAKayWFJWNPDJJXj5tInT1iBH1m8GJ1EaZYOWfRYqKtV+CoGVT32NW+DkqK3haCcaFytnWtWomuBVST+GjOxmDRDAc=
   file: build/app/outputs/apk/release/app-release.apk
   skip_cleanup: true
   on:
+    tags: true
     repo: microtears/Mood

@@ -1,10 +1,8 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:moon/component/theme.dart';
 import 'package:moon/page/home/data_screen.dart';
 import 'package:moon/page/home/moodview_screen.dart';
 import 'package:moon/page/home/profile_screen.dart';
-import 'package:moon/resource.dart';
 import 'package:provider/provider.dart';
 import 'package:route_annotation/route_annotation.dart';
 

@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mlibrary/mlibrary.dart';
-import 'package:moon/app.route.dart';
 import 'package:moon/component/theme.dart';
 import 'package:moon/page/welcome/register_screen.dart';
 import 'package:moon/page/welcome/welcome_screen.dart';
@@ -17,42 +16,95 @@ import 'package:video_player/video_player.dart';
 
 @RoutePage(isInitialRoute: true)
 class WelcomePage extends StatefulWidget {
-  static const GlobalKey<_WelcomePageState> loginPageKey = GlobalObjectKey(null);
+  static const GlobalKey<_WelcomePageState> loginPageKey =
+      GlobalObjectKey(null);
 
   const WelcomePage({Key key = loginPageKey}) : super(key: key);
-  // static final route = <String, RouteFactory>{
-  //   'login_page': (RouteSettings settings) => PageRouteBuilder(
-  //       pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) =>
-  //           LoginPage(),
-  //       transitionsBuilder: (BuildContext context, Animation<double> animation,
-  //               Animation<double> secondaryAnimation, Widget child) =>
-  //           // SlideTransition(
-  //           //   position: Tween<Offset>(
-  //           //     begin: Offset(0.0, 1.0),
-  //           //     end: Offset(0.0, 0.0),
-  //           //   ).animate(
-  //           //     CurvedAnimation(
-  //           //       parent: animation,
-  //           //       curve: Curves.fastOutSlowIn,
-  //           //     ),
-  //           //   ),
-  //           //   child: child,
-  //           // ),
-  //           SlideTransition(
-  //             position: Tween<Offset>(
-  //               begin: Offset(0.0, 1.0),
-  //               end: Offset(0.0, 0.0),
-  //             ).animate(animation),
-  //             child: SlideTransition(
-  //               position: Tween<Offset>(
-  //                 begin: Offset(0.0, 0.0),
-  //                 end: Offset(0.0, 0.0),
-  //               ).animate(secondaryAnimation),
-  //               child: child,
-  //             ),
-  //           ),
-  //       transitionDuration: Duration(milliseconds: 400)),
-  // };
+
+  @RoutePageBuilderFunction()
+  static Widget buildPage(BuildContext context, Animation animation,
+          Animation secondaryAnimation, RouteSettings settings) =>
+      RegisterScreen();
+  @RouteTransitionBuilderFunction()
+  static Widget buildTransitions(
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+          Widget child,
+          RouteSettings settings) =>
+      SlideTransition(
+        position: Tween<Offset>(
+          begin: Offset(0.0, 1.0),
+          end: Offset(0.0, 0.0),
+        ).animate(animation),
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ).animate(secondaryAnimation),
+          child: child,
+        ),
+      );
+  @RouteTransitionDurationField()
+  static Duration get transitionDuration => Duration(milliseconds: 400);
+
+  @PageRouteBuilderFuntcion()
+  static Route buildPageRoute(RouteSettings settings) => PageRouteBuilder(
+        pageBuilder: (BuildContext context, Animation animation,
+                Animation secondaryAnimation) =>
+            RegisterScreen(),
+        transitionsBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation, Widget child) =>
+            SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0.0, 1.0),
+            end: Offset(0.0, 0.0),
+          ).animate(animation),
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: Offset(0.0, 0.0),
+              end: Offset(0.0, 0.0),
+            ).animate(secondaryAnimation),
+            child: child,
+          ),
+        ),
+        transitionDuration: Duration(milliseconds: 400),
+      );
+
+  static final route = <String, RouteFactory>{
+    'login_page': (RouteSettings settings) => PageRouteBuilder(
+        pageBuilder: (BuildContext context, Animation animation,
+                Animation secondaryAnimation) =>
+            RegisterScreen(),
+        transitionsBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation, Widget child) =>
+            // SlideTransition(
+            //   position: Tween<Offset>(
+            //     begin: Offset(0.0, 1.0),
+            //     end: Offset(0.0, 0.0),
+            //   ).animate(
+            //     CurvedAnimation(
+            //       parent: animation,
+            //       curve: Curves.fastOutSlowIn,
+            //     ),
+            //   ),
+            //   child: child,
+            // ),
+            SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(0.0, 1.0),
+                end: Offset(0.0, 0.0),
+              ).animate(animation),
+              child: SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(0.0, 0.0),
+                  end: Offset(0.0, 0.0),
+                ).animate(secondaryAnimation),
+                child: child,
+              ),
+            ),
+        transitionDuration: Duration(milliseconds: 400)),
+  };
 
   @override
   _WelcomePageState createState() => _WelcomePageState();

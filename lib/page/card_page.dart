@@ -22,7 +22,7 @@ final debugTags = [
   "",
 ];
 
-@RoutePage(prarms: [RoutePrarm(name: "index", useNameAsKey: false)])
+@RoutePage(params: [RouteParameter("index")])
 class CardPage extends StatelessWidget {
   final int index;
   const CardPage({Key key, this.index}) : super(key: key);

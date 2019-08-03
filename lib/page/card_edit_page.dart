@@ -15,7 +15,7 @@ import 'package:route_annotation/route_annotation.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-@RoutePage(prarms: [RoutePrarm(name: "index", useNameAsKey: false)])
+@RoutePage(params: [RouteParameter("index")])
 class CardEditPage extends StatefulWidget {
   final int index;
 

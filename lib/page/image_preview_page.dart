@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:route_annotation/route_annotation.dart';
 import 'package:mlibrary/mlibrary.dart';
 
-@RoutePage(prarms: [
-  RoutePrarm(name: "imageUrl"),
-  RoutePrarm(name: "tag"),
-])
+@RoutePage(params: [RouteParameter("imageUrl"), RouteParameter("tag")])
 class ImagePreviewPage extends StatelessWidget {
   final String imageUrl;
   final String tag;
